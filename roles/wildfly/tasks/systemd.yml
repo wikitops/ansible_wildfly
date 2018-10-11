@@ -1,0 +1,26 @@
+---
+
+- name: WILDFLY SYSTEMD | Configure launch script
+  template:
+    src: etc/wildfly/wildfly.conf.j2
+    dest: "{{ wildfly_conf_path }}/wildfly.conf"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: WILDFLY SYSTEMD | Copy launch script
+  copy:
+    src: opt/wildfly/bin/launch.sh
+    dest: "{{ wildfly_install_link }}/bin/launch.sh"
+    owner: "{{ wildfly_user }}"
+    group: "{{ wildfly_group }}"
+    mode: 0755
+
+- name: WILDFLY SYSTEMD | Manage systemd
+  template:
+    src: lib/systemd/system/wildfly.service.j2
+    dest: /lib/systemd/system/wildfly.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart wildfly

@@ -1,0 +1,7 @@
+---
+
+- name: WILDFLY MANAGEMENT USERS | Configuration
+  shell: "{{ wildfly_install_link }}/bin/add-user.sh -s {{ item.name }} {{ item.password }}"
+  with_items: "{{ wildfly_management_users }}"
+  become: True
+  become_user: "{{ wildfly_user }}"

@@ -1,0 +1,15 @@
+---
+
+- name: WILDFLY USER | Manage group
+  group:
+    name: "{{ wildfly_group }}"
+    state: present
+    system: yes
+
+- name: WILDFLY USER | Manage user
+  user:
+    name: "{{ wildfly_user }}"
+    comment: "wildfly admin user"
+    group: "{{ wildfly_group }}"
+    state: present
+    system: yes

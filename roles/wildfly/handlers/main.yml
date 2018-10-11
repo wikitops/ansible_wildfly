@@ -1,0 +1,8 @@
+---
+
+- name: Restart wildfly
+  systemd:
+    name: wildfly
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

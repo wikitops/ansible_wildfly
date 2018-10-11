@@ -1,0 +1,40 @@
+---
+
+###
+# WILDFLY
+###
+
+# Version
+wildfly_version: 14.0.1
+
+# source
+wildfly_source_url: http://download.jboss.org/wildfly/{{ wildfly_version }}.Final/wildfly-{{ wildfly_version }}.Final.tar.gz
+wildfly_local_path: /opt
+
+# Directory
+wildfly_install_path: /opt/wildfly-{{ wildfly_version }}.Final
+wildfly_install_link: /opt/wildfly
+
+# User System
+wildfly_user: wildfly
+wildfly_group: wildfly
+
+# Configuration
+wildfly_conf_path: /etc/wildfly
+wildfly_conf_file: standalone.xml
+wildFly_mode: standalone
+wildfly_bind: 0.0.0.0
+wildfly_bind_management: 0.0.0.0
+
+# User Management
+wildfly_management_users:
+  - name: admin
+    password: admin
+
+# User Application
+wildfly_application_users:
+  - name: user
+    password: user
+
+# Logs
+wildfly_logs_path: /var/log/wildfly

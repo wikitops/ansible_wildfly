@@ -1,0 +1,46 @@
+---
+
+- name: WILDFLY | Create directories
+  file:
+    state: directory
+    path: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - "{{ wildfly_conf_path }}"
+
+- name: WILDFLY | Manage users
+  import_tasks: users.yml
+
+- name: WILDFLY | Unarchive sources (This may take some time)
+  unarchive:
+    src: "{{ wildfly_source_url }}"
+    dest: "{{ wildfly_local_path }}"
+    owner: "{{ wildfly_user }}"
+    group: "{{ wildfly_group }}"
+    remote_src: yes
+    creates: "{{ wildfly_local_path }}/wildfly-{{ wildfly_version }}.Final"
+  notify: Restart wildfly
+
+- name: WILDFLY | Manage symlink
+  file:
+    state: link
+    src: "{{ wildfly_install_path }}"
+    dest: "{{ wildfly_install_link }}"
+    owner: "{{ wildfly_user }}"
+    group: "{{ wildfly_group }}"
+
+- name: WILDFLY | Manage systemd
+  import_tasks: systemd.yml
+
+- name: WILDFLY | Manage management users
+  import_tasks: users_management.yml
+  when: wildfly_management_users is defined and wildfly_management_users != ""
+
+- name: WILDFLY | Manage application users
+  import_tasks: users_management.yml
+  when: wildfly_application_users is defined and wildfly_application_users != ""
+
+- name: WILDFLY | Manage logs
+  import_tasks: logs.yml
