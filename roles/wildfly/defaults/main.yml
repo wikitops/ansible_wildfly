@@ -25,7 +25,7 @@ wildfly_conf_file: standalone.xml
 wildFly_mode: standalone
 wildfly_bind: 0.0.0.0
 wildfly_bind_management: 0.0.0.0
-wildFly_port_offset: 100
+wildFly_port_offset: 0
 
 # User Management
 wildfly_management_users:
