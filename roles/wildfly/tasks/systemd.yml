@@ -7,6 +7,7 @@
     owner: root
     group: root
     mode: 0644
+  notify: Restart wildfly
 
 - name: WILDFLY SYSTEMD | Copy launch script
   copy:
@@ -15,6 +16,7 @@
     owner: "{{ wildfly_user }}"
     group: "{{ wildfly_group }}"
     mode: 0755
+  notify: Restart wildfly
 
 - name: WILDFLY SYSTEMD | Manage systemd
   template:

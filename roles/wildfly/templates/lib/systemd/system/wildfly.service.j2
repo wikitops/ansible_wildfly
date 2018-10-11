@@ -12,7 +12,7 @@ User={{ wildfly_user }}
 Group={{ wildfly_group }}
 LimitNOFILE=102642
 PIDFile=/var/run/wildfly/wildfly.pid
-ExecStart={{ wildfly_install_path }}/bin/launch.sh $WILDFLY_MODE $WILDFLY_CONFIG $WILDFLY_BIND $WILDFLY_BIND_MANAGEMENT
+ExecStart={{ wildfly_install_path }}/bin/launch.sh $WILDFLY_MODE $WILDFLY_CONFIG $WILDFLY_BIND $WILDFLY_BIND_MANAGEMENT $WILDFLY_PORT_OFFSET
 StandardOutput=null
 
 [Install]
