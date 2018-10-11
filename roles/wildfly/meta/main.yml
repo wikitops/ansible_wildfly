@@ -11,3 +11,30 @@ dependencies:
     vars:
       java_package: [ "java-1.8.0-openjdk" ]
     when: ansible_os_family == "RedHat"
+
+galaxy_info:
+  author: wikitops
+  description: Wildfly for Linux.
+  company: "Wikitops"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.4
+  platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
+  - name: Fedora
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - jessie
+  - name: Ubuntu
+    versions:
+    - trusty
+    - xenial
+    - bionic
+  galaxy_tags:
+    - wildfly
+    - jboss
+    - java
